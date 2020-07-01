@@ -286,7 +286,6 @@ namespace COVID_19Monitoring.Forms
             Microsoft.Office.Interop.Excel.Application ExlApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook workbook = ExlApp.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
-            //worksheet = workbook.Sheets["Sheet1"];
             worksheet = workbook.ActiveSheet;
             worksheet.Name = "PUM";
 

@@ -38,7 +38,6 @@ namespace COVID_19Monitoring.Forms
                 {
                     Barangay = x.BrgyName,
                     Count  = listPUM.Count(xx => xx.Status == null && xx.Person.Barangay.BrgyName == x.BrgyName),
-                    //Percentage = (listPUM.Count(xx => xx.Status == null) == 0) ? "0%" : ((decimal)(listPUM.Count(xx => xx.Status == null && xx.Person.Barangay.BrgyName == x.BrgyName)) / ((decimal)listPUM.Count(xx => xx.Status == null)) * 100) + "%",
                 }).OrderByDescending(x => x.Count).ToList();
                 
                 GridGraph();

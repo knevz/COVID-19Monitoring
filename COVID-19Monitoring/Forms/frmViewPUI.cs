@@ -40,7 +40,7 @@ namespace COVID_19Monitoring.Forms
             {
                 ID = x.Person.ID,
                 FullName = x.Person.LastName + ", " + x.Person.FirstName,
-                Age = x.Person.Age >= 111 ? (int?)null : x.Person.Age,
+                Age = x.Person.Age,
                 Gender = x.Person.Gender,
                 HouseNo = x.Person.HouseNo,
                 Street = x.Person.Street,

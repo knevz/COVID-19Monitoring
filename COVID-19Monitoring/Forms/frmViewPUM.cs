@@ -42,7 +42,6 @@ namespace COVID_19Monitoring.Forms
             {
                 ID = x.Person.ID,
                 FullName = x.Person.LastName + ", " + x.Person.FirstName,
-                //Age = x.Person.Age >= 111 ? (int?)null : x.Person.Age,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
                 HouseNo = x.Person.HouseNo,
@@ -51,9 +50,6 @@ namespace COVID_19Monitoring.Forms
                 Contact = x.Person.Mobile,
                 Bus = x.Bus,
                 DateArrived = x.DateArrived,
-                //DaysInQuarantine = (DateTime.Now.Day - x.DateArrived.Day),
-                //DaysInQuarantine = EntityFunctions.DiffDays(x.DateArrived, DateTime.Now),
-                //DaysInQuarantine = DbFunctions.DiffDays(x.DateArrived, DateTime.Now),
                 DaysInQuarantine =  (int)(DateTime.Now - x.DateArrived).TotalDays,
                 Status = x.Status,
                 DateModified = x.StatusUpdateDate,

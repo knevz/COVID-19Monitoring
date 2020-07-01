@@ -75,9 +75,7 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUM.Count(x => x.Status == null && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUM.Where(x => x.Status == null && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
-                //Age = x.Person.Age >= 111 ? (int?)null : x.Person.Age,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
                 CivilStatus = x.Person.CivilStatus,
@@ -99,7 +97,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUM.Count(x => x.Status == "Case Closed" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUM.Where(x => x.Status == "Case Closed" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -123,7 +120,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUM.Count(x => x.Status == "Transferred Out" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUM.Where(x => x.Status == "Transferred Out" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -147,7 +143,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUM.Count(x => x.Status == "Death" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUM.Where(x => x.Status == "Death" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -176,7 +171,6 @@ namespace COVID_19Monitoring.Forms
             {
                 ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
-                //Age = x.Person.Age >= 111 ? (int?)null : x.Person.Age,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
                 CivilStatus = x.Person.CivilStatus,
@@ -198,7 +192,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUI.Count(x => x.Status == "Recovered" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource =listPUI.Where(x => x.Status == "Recovered" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -223,7 +216,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUI.Count(x => x.Status == "Transferred Out" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUI.Where(x => x.Status == "Transferred Out" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -248,7 +240,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUI.Count(x => x.Status == "Death" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUI.Where(x => x.Status == "Death" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
@@ -273,7 +264,6 @@ namespace COVID_19Monitoring.Forms
             lblBarangay.Text = frmSummary.barangayName + ": " + listPUI.Count(x => x.Status == "Hospital" && x.Person.Barangay.BrgyName == frmSummary.barangayName);
             dgvSummary.DataSource = listPUI.Where(x => x.Status == "Hospital" && x.Person.Barangay.BrgyName == frmSummary.barangayName).Select(x => new
             {
-                //ID = x.Person.ID,
                 Name = x.Person.LastName + ", " + x.Person.FirstName,
                 Age = x.Person.Age,
                 Gender = x.Person.Gender,
