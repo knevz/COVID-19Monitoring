@@ -56,7 +56,7 @@ namespace COVID_19Monitoring.Forms
 
         private async void dgvPUI_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           if(listPUI.Count() != 0)
+           if(listPUI.Count(x => x.Status == null) != 0)
             {
                 if (dgvPUI.Columns[e.ColumnIndex].HeaderText == "Update Status")
                 {
