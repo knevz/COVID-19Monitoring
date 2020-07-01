@@ -15,9 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmSettings : Form
     {
-        IBarangayRepository barangayRepository = new BarangayRepository();
-        IPlaceRepository placeRepository = new PlaceRepository();
-        ISymptomRepository symptomRepository = new SymptomRepository();
+        IDataRepository repository = new DataRepository();
 
         List<Barangay> listBarangay;
         List<Place> listPlace;
@@ -38,7 +36,7 @@ namespace COVID_19Monitoring.Forms
         }
         public async Task LoadBarangay()
         {
-            listBarangay = await barangayRepository.GetBarangaysAsync();
+            listBarangay = await repository.GetBarangaysAsync();
             dgvBarangay.DataSource = listBarangay.Select(x => new
             {
                 ID = x.ID,
@@ -48,7 +46,7 @@ namespace COVID_19Monitoring.Forms
 
         public async Task LoadPlace()
         {
-            listPlace = await placeRepository.GetPlacesAsync();
+            listPlace = await repository.GetPlacesAsync();
             dgvPlace.DataSource = listPlace.Select(x => new
             {
                 ID = x.ID,
@@ -58,7 +56,7 @@ namespace COVID_19Monitoring.Forms
 
         public async Task LoadSymptom()
         {
-            listSymptom = await symptomRepository.GetSymptomsAsync();
+            listSymptom = await repository.GetSymptomsAsync();
             dgvSymptom.DataSource = listSymptom.Select(x => new
             {
                 ID = x.ID,
@@ -82,11 +80,11 @@ namespace COVID_19Monitoring.Forms
                 if (dgvBarangay.Columns[e.ColumnIndex].HeaderText == "Delete")
                 {
                     barangayID = int.Parse(dgvBarangay.CurrentRow.Cells[2].Value.ToString());
-                    Barangay barangay = await barangayRepository.GetBarangayByIdAsync(barangayID);
+                    Barangay barangay = await repository.GetBarangayByIdAsync(barangayID);
                     DialogResult dr = MessageBox.Show("Are you sure to delete Barangay " + barangay.BrgyName + " from list?", "Warning!", MessageBoxButtons.YesNo);
                     if (dr == DialogResult.Yes)
                     {
-                        await barangayRepository.DeleteBarangayAsync(barangayID);
+                        await repository.DeleteBarangayAsync(barangayID);
                         MessageBox.Show("Delete Successfull!", "Success!");
                         await LoadBarangay();
                     }
@@ -117,11 +115,11 @@ namespace COVID_19Monitoring.Forms
                 if (dgvPlace.Columns[e.ColumnIndex].HeaderText == "Delete")
                 {
                     placeID = int.Parse(dgvPlace.CurrentRow.Cells[2].Value.ToString());
-                    Place place = await placeRepository.GetPlaceByIdAsync(placeID);
+                    Place place = await repository.GetPlaceByIdAsync(placeID);
                     DialogResult dr = MessageBox.Show("Are you sure to delete " + place.PlaceOfOrigin + " from list?", "Warning!", MessageBoxButtons.YesNo);
                     if (dr == DialogResult.Yes)
                     {
-                        await placeRepository.DeletePlaceAsync(placeID);
+                        await repository.DeletePlaceAsync(placeID);
                         MessageBox.Show("Delete Successfull!", "Success!");
                         await LoadPlace();
                     }
@@ -145,11 +143,11 @@ namespace COVID_19Monitoring.Forms
                 if (dgvSymptom.Columns[e.ColumnIndex].HeaderText == "Delete")
                 {
                     symptomID = int.Parse(dgvSymptom.CurrentRow.Cells[2].Value.ToString());
-                    Symptom symptom = await symptomRepository.GetSymptomByIdAsync(symptomID);
+                    Symptom symptom = await repository.GetSymptomByIdAsync(symptomID);
                     DialogResult dr = MessageBox.Show("Are you sure to delete " + symptom.Indication + " from list?", "Warning!", MessageBoxButtons.YesNo);
                     if (dr == DialogResult.Yes)
                     {
-                        await symptomRepository.DeleteSymptomAsync(symptomID);
+                        await repository.DeleteSymptomAsync(symptomID);
                         MessageBox.Show("Delete Successfull!", "Success!");
                         await LoadSymptom();
                     }

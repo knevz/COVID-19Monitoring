@@ -15,7 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmPUIstatus : Form
     {
-        IPUIRepository puiRepository = new PUIRepository();
+        IDataRepository repository = new DataRepository();
         List<PUI> listPUI;
         public frmPUIstatus()
         {
@@ -36,7 +36,7 @@ namespace COVID_19Monitoring.Forms
             DialogResult dr = MessageBox.Show("Updating the status of " + pui.Person.FirstName + " " + pui.Person.LastName + " to " + cbPUIstatus.Text + ".", "Confirmation!", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
             {
-                await puiRepository.UpdatePUIAsync(pui);
+                await repository.UpdatePUIAsync(pui);
                 MessageBox.Show("Status Updated...", "Success!");
 
                 frmViewPUI list = (frmViewPUI)Application.OpenForms["frmListPUI"];
@@ -47,7 +47,7 @@ namespace COVID_19Monitoring.Forms
 
         public async Task LoadPUI()
         {
-            listPUI = await puiRepository.GetPUIsAsync();
+            listPUI = await repository.GetPUIsAsync();
         }
     }
 }

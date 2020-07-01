@@ -15,8 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmHome : Form
     {
-        IPUIRepository puiRepository = new PUIRepository();
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
 
         List<PUI> listPUI;
         List<PUM> listPUM;
@@ -32,8 +31,8 @@ namespace COVID_19Monitoring.Forms
 
         async Task LoadData()
         {
-            listPUM = await pumRepository.GetPUMsAsync();
-            listPUI = await puiRepository.GetPUIsAsync();
+            listPUM = await repository.GetPUMsAsync();
+            listPUI = await repository.GetPUIsAsync();
 
             lblPUM.Text = listPUM.Count(x => x.Status == null).ToString();
             lblCaseClosed.Text = listPUM.Count(x => x.Status == "Case Closed").ToString();

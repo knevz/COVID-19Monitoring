@@ -15,8 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmViewPUI : Form
     {
-        IPersonRepository personRepository = new PersonRepository();
-        IPUIRepository puiRepository = new PUIRepository();
+        IDataRepository repository = new DataRepository();
 
         List<PUI> listPUI;
 
@@ -34,7 +33,7 @@ namespace COVID_19Monitoring.Forms
         }
         public async Task LoadPUI()
         {
-            listPUI = await puiRepository.GetPUIsAsync();
+            listPUI = await repository.GetPUIsAsync();
             lblPUI.Text = "PUI's: " + listPUI.Count(x => x.Status == null);
 
             dgvPUI.DataSource = listPUI.Where(x => x.Status == null).Select(x => new
@@ -76,8 +75,8 @@ namespace COVID_19Monitoring.Forms
                     {
                         PUI pui = listPUI.SingleOrDefault(x => x.PersonID == personID);
 
-                        await puiRepository.DeletePUIAsync(personID);
-                        await personRepository.DeletePersonAsync(personID);
+                        await repository.DeletePUIAsync(personID);
+                        await repository.DeletePersonAsync(personID);
                         await LoadPUI();
                     }
                 }

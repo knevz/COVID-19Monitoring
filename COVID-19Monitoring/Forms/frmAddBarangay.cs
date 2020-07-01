@@ -15,7 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmAddBarangay : Form
     {
-        IBarangayRepository repository = new BarangayRepository();
+        IDataRepository repository = new DataRepository();
         List<Barangay> listBarangay;
         public frmAddBarangay()
         {

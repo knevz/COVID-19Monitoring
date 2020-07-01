@@ -44,5 +44,6 @@ namespace COVID_19Monitoring.Repository.DataProvider
             await _db.SaveChangesAsync();
             return pum;
         }
+
     }
 }

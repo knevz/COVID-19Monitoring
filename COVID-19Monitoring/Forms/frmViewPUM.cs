@@ -16,8 +16,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmViewPUM : Form
     {
-        IPersonRepository personRepository = new PersonRepository();
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
 
         List<PUM> listPUM;
 
@@ -35,7 +34,7 @@ namespace COVID_19Monitoring.Forms
         }
         public async Task LoadPUM()
         {
-            listPUM = await pumRepository.GetPUMsAsync();
+            listPUM = await repository.GetPUMsAsync();
 
             lblPUM.Text = "PUM's: " + listPUM.Count(x => x.Status == null);
 
@@ -83,8 +82,8 @@ namespace COVID_19Monitoring.Forms
                     {
                         PUM pum = listPUM.SingleOrDefault(x => x.PersonID == personID);
 
-                        await pumRepository.DeletePUMAsync(pum.ID);
-                        await personRepository.DeletePersonAsync(personID);
+                        await repository.DeletePUMAsync(pum.ID);
+                        await repository.DeletePersonAsync(personID);
                         await LoadPUM();
                     }
                 }

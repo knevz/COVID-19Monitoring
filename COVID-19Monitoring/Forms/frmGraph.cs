@@ -16,9 +16,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmGraph : Form
     {
-        IBarangayRepository barangayRepository = new BarangayRepository();
-        IPUIRepository puiRepository = new PUIRepository();
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
 
         List<Barangay> listBarangay;
         List<PUM> listPUM;
@@ -225,9 +223,9 @@ namespace COVID_19Monitoring.Forms
         }
         public async Task LoadData()
         {
-            listBarangay = await barangayRepository.GetBarangaysAsync();
-            listPUI = await puiRepository.GetPUIsAsync();
-            listPUM = await pumRepository.GetPUMsAsync();
+            listBarangay = await repository.GetBarangaysAsync();
+            listPUI = await repository.GetPUIsAsync();
+            listPUM = await repository.GetPUMsAsync();
         }
         public void GridGraph()
         {

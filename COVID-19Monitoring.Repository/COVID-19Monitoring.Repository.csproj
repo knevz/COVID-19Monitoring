@@ -52,12 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider\BarangayRepository.cs" />
+    <Compile Include="DataProvider\DataRepository.cs" />
     <Compile Include="DataProvider\PersonRepository.cs" />
     <Compile Include="DataProvider\PlaceRepository.cs" />
     <Compile Include="DataProvider\PUIRepository.cs" />
     <Compile Include="DataProvider\PUMRepository.cs" />
     <Compile Include="DataProvider\SymptomRepository.cs" />
     <Compile Include="Interface\IBarangayRepository.cs" />
+    <Compile Include="Interface\IDataRepository.cs" />
     <Compile Include="Interface\IPersonRepository.cs" />
     <Compile Include="Interface\IPlaceRepository.cs" />
     <Compile Include="Interface\IPUIRepository.cs" />

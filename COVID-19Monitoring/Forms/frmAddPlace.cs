@@ -15,7 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmAddPlace : Form
     {
-        IPlaceRepository repository = new PlaceRepository();
+        IDataRepository repository = new DataRepository();
         List<Place> listPlace;
         public frmAddPlace()
         {

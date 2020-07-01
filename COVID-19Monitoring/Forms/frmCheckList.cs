@@ -15,19 +15,11 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmCheckList : Form
     {
-        IBarangayRepository barangayRepository = new BarangayRepository();
-        IPlaceRepository placeRepository = new PlaceRepository();
-        ISymptomRepository symptomRepository = new SymptomRepository();
-        IPersonRepository personRepository = new PersonRepository();
-        IPUIRepository puiRepository = new PUIRepository();
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
 
         List<Barangay> listBarangay;
         List<Place> listPlace;
         List<Symptom> listSymptom;
-        List<Person> listPerson;
-        List<PUI> listPUI;
-        List<PUM> listPUM;
 
         public int textBoxCount;
         public frmCheckList()
@@ -52,12 +44,9 @@ namespace COVID_19Monitoring.Forms
 
         async Task LoadData()
         {
-            listBarangay = await barangayRepository.GetBarangaysAsync();
-            listPlace = await placeRepository.GetPlacesAsync();
-            listSymptom = await symptomRepository.GetSymptomsAsync();
-            listPerson = await personRepository.GetPeopleAsync();
-            listPUI = await puiRepository.GetPUIsAsync();
-            listPUM = await pumRepository.GetPUMsAsync();
+            listBarangay = await repository.GetBarangaysAsync();
+            listPlace = await repository.GetPlacesAsync();
+            listSymptom = await repository.GetSymptomsAsync();
 
         }
         private void btnAddPlace_Click(object sender, EventArgs e)
@@ -69,7 +58,7 @@ namespace COVID_19Monitoring.Forms
 
         private async void btnRefreshPlace_Click(object sender, EventArgs e)
         {
-            listPlace = await placeRepository.GetPlacesAsync();
+            listPlace = await repository.GetPlacesAsync();
             if (listPlace.Count() > 0)
                 await LoadPlaces();
         }
@@ -83,7 +72,7 @@ namespace COVID_19Monitoring.Forms
 
         private async void btnRefreshSymptoms_Click(object sender, EventArgs e)
         {
-            listSymptom = await symptomRepository.GetSymptomsAsync();
+            listSymptom = await repository.GetSymptomsAsync();
             if (listSymptom.Count() > 0)
                 await LoadSymptoms();
         }
@@ -93,7 +82,7 @@ namespace COVID_19Monitoring.Forms
             lvPlaces.Items.Clear();
             int num = 1;
 
-            foreach (var item in await placeRepository.GetPlacesAsync())
+            foreach (var item in await repository.GetPlacesAsync())
             {
                 ListViewItem lvi = new ListViewItem(num.ToString() + ")");
                 lvi.SubItems.Add(item.PlaceOfOrigin);
@@ -107,7 +96,7 @@ namespace COVID_19Monitoring.Forms
             lvSymptoms.Items.Clear();
             int num = 1;
 
-            foreach (var item in await symptomRepository.GetSymptomsAsync())
+            foreach (var item in await repository.GetSymptomsAsync())
             {
                 ListViewItem lvi = new ListViewItem(num.ToString() + ")");
                 lvi.SubItems.Add(item.Indication);
@@ -136,7 +125,7 @@ namespace COVID_19Monitoring.Forms
                     person.BrgyID = listBarangay.Where(x => x.BrgyName == cbBarangay.Text).Select(x => x.ID).SingleOrDefault();
                     person.Mobile = txtMobile.Text.Trim();
 
-                    await personRepository.AddPersonAsync(person);
+                    await repository.AddPersonAsync(person);
 
                     if (lvSymptoms.CheckedItems.Count == 0)
                     {
@@ -152,7 +141,7 @@ namespace COVID_19Monitoring.Forms
 
                         pum.PlaceOfOrigin = Places;
 
-                        await pumRepository.AddPUMAsync(pum);
+                        await repository.AddPUMAsync(pum);
 
                         MessageBox.Show(person.FirstName + " " + person.LastName + " has been added to list of PUMs");
                         FindControls<TextBox>(this).Where(x => x.Text != string.Empty).ToList().ForEach(x => x.Clear());
@@ -182,7 +171,7 @@ namespace COVID_19Monitoring.Forms
                         pui.PlaceOfOrigin = Places;
                         pui.Onset = dtpOnset.Value.Date;
 
-                        await puiRepository.AddPUIAsync(pui);
+                        await repository.AddPUIAsync(pui);
 
                         MessageBox.Show(person.FirstName + " " + person.LastName + " has been added to list of PUIs");
                         FindControls<TextBox>(this).Where(x => x.Text != string.Empty).ToList().ForEach(x => x.Clear());

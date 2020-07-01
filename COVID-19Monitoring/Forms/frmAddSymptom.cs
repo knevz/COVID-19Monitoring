@@ -15,7 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmAddSymptom : Form
     {
-        ISymptomRepository repository = new SymptomRepository();
+        IDataRepository repository = new DataRepository();
         List<Symptom> listSymptom;
         public frmAddSymptom()
         {

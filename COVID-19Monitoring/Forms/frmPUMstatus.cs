@@ -15,7 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmPUMstatus : Form
     {
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
         List<PUM> listPUM;
         public frmPUMstatus()
         {
@@ -36,7 +36,7 @@ namespace COVID_19Monitoring.Forms
             DialogResult dr = MessageBox.Show("Updating the status of " + pum.Person.FirstName + " " + pum.Person.LastName + " to " + cbPUMstatus.Text + ".", "Confirmation!", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
             {
-                await pumRepository.UpdatePUMAsync(pum);
+                await repository.UpdatePUMAsync(pum);
                 MessageBox.Show("Status Updated...", "Success!");
 
                 frmViewPUM list = (frmViewPUM)Application.OpenForms["frmListPUM"];
@@ -47,7 +47,7 @@ namespace COVID_19Monitoring.Forms
 
         public async Task LoadPUM()
         {
-            listPUM = await pumRepository.GetPUMsAsync();
+            listPUM = await repository.GetPUMsAsync();
         }
     }
 }

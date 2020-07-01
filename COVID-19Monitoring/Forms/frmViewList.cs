@@ -15,12 +15,7 @@ namespace COVID_19Monitoring.Forms
 {
     public partial class frmViewList : Form
     {
-        IBarangayRepository barangayRepository = new BarangayRepository();
-        IPersonRepository personRepository = new PersonRepository();
-        IPlaceRepository placeRepository = new PlaceRepository();
-        ISymptomRepository symptomRepository = new SymptomRepository();
-        IPUIRepository puiRepository = new PUIRepository();
-        IPUMRepository pumRepository = new PUMRepository();
+        IDataRepository repository = new DataRepository();
 
         List<Barangay> listBarangay;
         List<Person> listPerson;
@@ -65,12 +60,12 @@ namespace COVID_19Monitoring.Forms
         }
         public async Task LoadData()
         {
-            listBarangay = await barangayRepository.GetBarangaysAsync();
-            listPerson = await personRepository.GetPeopleAsync();
-            listPlace = await placeRepository.GetPlacesAsync();
-            listSymptom = await symptomRepository.GetSymptomsAsync();
-            listPUI = await puiRepository.GetPUIsAsync();
-            listPUM = await pumRepository.GetPUMsAsync();
+            listBarangay = await repository.GetBarangaysAsync();
+            listPerson = await repository.GetPeopleAsync();
+            listPlace = await repository.GetPlacesAsync();
+            listSymptom = await repository.GetSymptomsAsync();
+            listPUI = await repository.GetPUIsAsync();
+            listPUM = await repository.GetPUMsAsync();
         }
         /// <summary>
         /// Load Defaults PUM
